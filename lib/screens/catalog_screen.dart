@@ -17,11 +17,9 @@ class CatalogScreen extends StatefulWidget {
 }
 
 class _CatalogScreenState extends State<CatalogScreen> {
-  int counter = 0;
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('CatalogScreen build');
 
     final genres = [
       'Усі',
@@ -80,15 +78,14 @@ class _CatalogScreenState extends State<CatalogScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
-                Text('Знайдено книг: ${filteredBooks.length}'),
-                const Spacer(),
-                Text('Лічильник: $counter'),
-                IconButton(
-                  onPressed: () {
-                    setState(() => counter++);
-                  },
-                  icon: const Icon(Icons.add_circle_outline),
-                  tooltip: 'Збільшити лічильник',
+                const Icon(Icons.library_books_outlined),
+                const SizedBox(width: 8),
+                Text(
+                  'Знайдено книг: ${filteredBooks.length}',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
