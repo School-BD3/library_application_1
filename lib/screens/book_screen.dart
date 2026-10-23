@@ -109,13 +109,7 @@ class BookScreen extends StatelessWidget {
 
                 ElevatedButton.icon(
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Бронювання додамо на наступному етапі',
-                        ),
-                      ),
-                    );
+                    context.push('/catalog/book/${book.id}/reserve');
                   },
                   icon: const Icon(Icons.bookmark_add),
                   label: const Text('Забронювати книгу'),

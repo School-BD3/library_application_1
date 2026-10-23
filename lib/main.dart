@@ -4,7 +4,6 @@ import 'router.dart';
 
 void main() {
   GoRouter.optionURLReflectsImperativeAPIs = true;
-
   runApp(const LibraryApp());
 }
 
