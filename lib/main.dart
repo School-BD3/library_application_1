@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 
+import 'router.dart';
+
 void main() {
-  runApp(const MainApp());
+  runApp(const LibraryApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class LibraryApp extends StatelessWidget {
+  const LibraryApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp.router(
+      title: 'Бібліотека коледжу',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.indigo,
+        ),
+        useMaterial3: true,
+      ),
+      routerConfig: appRouter,
     );
   }
 }
