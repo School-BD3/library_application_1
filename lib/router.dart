@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'screens/catalog_screen.dart';
+import 'screens/book_screen.dart';
 import 'screens/my_books_screen.dart';
 import 'screens/profile_screen.dart';
 import 'widgets/main_navigation.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/catalog',
+
   routes: [
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -15,17 +17,36 @@ final GoRouter appRouter = GoRouter(
           navigationShell: navigationShell,
         );
       },
+
       branches: [
         StatefulShellBranch(
           routes: [
             GoRoute(
               path: '/catalog',
               builder: (context, state) {
-                return const CatalogScreen();
+                final genre = state.uri.queryParameters['genre'];
+
+                return CatalogScreen(
+                  selectedGenre: genre,
+                );
               },
+              routes: [
+                GoRoute(
+                  path: 'book/:bookId',
+                  builder: (context, state) {
+                    final bookId =
+                        state.pathParameters['bookId']!;
+
+                    return BookScreen(
+                      bookId: bookId,
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),
+
         StatefulShellBranch(
           routes: [
             GoRoute(
@@ -36,6 +57,7 @@ final GoRouter appRouter = GoRouter(
             ),
           ],
         ),
+
         StatefulShellBranch(
           routes: [
             GoRoute(
@@ -49,6 +71,7 @@ final GoRouter appRouter = GoRouter(
       ],
     ),
   ],
+
   errorBuilder: (context, state) {
     return Scaffold(
       appBar: AppBar(
